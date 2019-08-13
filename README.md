@@ -1,5 +1,5 @@
 # web-scraping
-Web scraping program developed in Python 3 using regular expressions.
+Web scraping program using regular expressions, developed in Python 3.
 The purpose is to pull and structure The World Factbook's data into lists and dictionaries to build a Knowledgebase.
 
 Usage: 

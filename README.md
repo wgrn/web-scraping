@@ -1,11 +1,14 @@
 # web-scraping
 Web scraping program developed in Python 3 using regular expressions.
-The purpose is to pull and structure the CIA World Factbook's data into lists and dictionaries to build a Knowledgebase.
+The purpose is to pull and structure The World Factbook's data into lists and dictionaries to build a Knowledgebase.
 
 Usage: 
 $ python3 factbook.py
 operating_system:  Linux
 Get files (Y/N): N
+
+Output:
+File named "file_data.py" in the same directory containing the dictionaries and lists created out of the data pulled from The World Factbook of the CIA.
 
 Note:
 In order for the web scraping program to work you must have an internet connection.

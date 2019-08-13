@@ -42,16 +42,36 @@ REGEX   = ['(?<=geos/)[a-z]+',
 # '/notesanddefs.html?fieldkey=2011&amp;term=Geographic%20coordinates">'
 # '[a-zA-Z ]+:</a><a href="' + BASEURL +'fields/'
 
+# Auxiliary variables
+regular_expression = ''
+html               = ''
+c                  = 'us' #default value but can change
+
+
+# Auxiliary lists
+field        = []
+country      = []
+pais         = ['mx', 'us', 'ca'] # instead of country_code list, just to show functionality
+field_code   = []
+field_name   = []
+field_desc   = []
+field_data   = [] # the specific field values for each country
+country_code = []
+country_name = []
+
+
 # Dictionaries
-fields    = {'0000': 'country'}
+#'0000': 'country'
+fields    = []
 countries = {}
 
-# Condensed Information Table
+# Condensed Information Tables
 Factbook = []
 
-# File with actual data
+# The File with current data
 file_data = ''
 
+"""
 # fields in boolean
 fld_bool = ["Citizenship"]
 
@@ -60,7 +80,7 @@ def isStr(fieldCode):
       if fields[fieldCode] == fld_nbr[i]:
          return true
    return false
-
+"""
 
 #Getting document to find country's code and name
 with urllib.request.urlopen(BASEURL) as response:
@@ -81,19 +101,19 @@ country_name = country_name[1:]
 
 
 #Getting document to find field's code and name
-with urllib.request.urlopen(CTRYURL + 'us.html') as response:
+with urllib.request.urlopen(CTRYURL + c + '.html') as response:
    html = response.read()
 
 # Getting the field's code
 regular_expression = re.compile(REGEX[2])
-field_code = re.findall(REGEX[2], str(html))
+field_code         = re.findall(REGEX[2], str(html))
 for i in range(len(field_code)):
    field_code[i] = field_code[i].replace('.html#', '')
 #print(len(field_code), field_code)
 
 # Getting the field's name
 regular_expression = re.compile(REGEX[3])
-field_name = re.findall(REGEX[3], str(html))
+field_name         = re.findall(REGEX[3], str(html))
 for i in range(len(field_name)):
    field_name[i] = field_name[i].replace(' field listing', '')
 #print(len(field_name), field_name)
@@ -131,5 +151,3 @@ def getFiles(get_files):
       print ('Files successfully downloaded.')
 
    return True
-
-getFiles(get_files)
